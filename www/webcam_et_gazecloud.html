@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+    <!-- Bootstrap CSS -->
+    <script src="./js/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="https://api.gazerecorder.com/GazeCloudAPI.js" ></script>
+
+    <title>Webcam ET Test</title>
+</head>
+<body>
+
+<div class="container">
+    <h1>Hello, world!</h1>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <img src="https://via.placeholder.com/500x300?text=AOI+1" class="img-responsive">
+        </div>
+        <div class="col-lg-6">
+            <img src="https://via.placeholder.com/500x300?text=AOI+2" class="img-responsive">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 40px">
+        <div class="col-lg-4">
+            <img src="https://via.placeholder.com/800x400?text=AOI+3" class="img-responsive">
+        </div>
+        <div class="col-lg-4">
+            <img src="https://via.placeholder.com/800x400?text=AOI+4" class="img-responsive">
+        </div>
+        <div class="col-lg-4">
+            <img src="https://via.placeholder.com/800x400?text=AOI+5" class="img-responsive">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 40px">
+        <button type="button" class="btn btn-primary" onclick="GazeCloudAPI.StartEyeTracking()">Start</button>
+        <button type="button" class="btn btn-primary" onclick="GazeCloudAPI.StopEyeTracking()">End</button>
+    </div>
+
+</div>
+
+<script>
+    console.log('This is a sample value')
+    console.log(Math.PI)
+</script>
+
+
+
+
+
+</body>
+</html>

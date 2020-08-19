@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+
+    <!-- Bootstrap CSS -->
+    <script src="./js/jquery.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <script src="./js/bootstrap.min.js"></script>
+    <!-- WebGazer.js library -->
+    <script src="./js/webgazer.js" type="text/javascript" ></script>
+
+    <title>Webcam ET Test</title>
+</head>
+<body>
+
+<div class="container">
+<!--    <script>-->
+<!--        webgazer.begin()-->
+<!--        // webgazer.setGazeListener().webgazer.begin()-->
+<!--    </script>-->
+    <h1>
+        Hello, world!
+        <small>
+            <code id="message"></code>
+        </small>
+    </h1>
+
+    <div class="row">
+        <div class="col-lg-12" style="text-align: right">
+            <button type="button" id="start" class="btn btn-primary">Start ET</button>
+            <!--button type="button" id="predict" class="btn btn-primary">Predict</button-->
+            <button type="button" id="end" class="btn btn-primary">End</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-lg-6">
+            <img id="aoi1" src="https://via.placeholder.com/500x280?text=AOI+1" class="aoi img-responsive">
+            <input type="text" name="aoi1_ct" value="0"/>
+        </div>
+        <div class="col-lg-6">
+            <img id="aoi2" src="https://via.placeholder.com/500x280?text=AOI+2" class="aoi img-responsive">
+            <input type="text" name="aoi2_ct" value="0"/>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 20px">
+        <div class="col-lg-4">
+            <img id="aoi3" src="https://via.placeholder.com/800x400?text=AOI+3" class="aoi img-responsive">
+            <input type="text" name="aoi3_ct" value="0"/>
+        </div>
+        <div class="col-lg-4">
+            <img id="aoi4" src="https://via.placeholder.com/800x400?text=AOI+4" class="aoi img-responsive">
+            <input type="text" name="aoi4_ct" value="0"/>
+        </div>
+        <div class="col-lg-4">
+            <img id="aoi5" src="https://via.placeholder.com/800x400?text=AOI+5" class="aoi img-responsive">
+            <input type="text" name="aoi5_ct" value="0"/>
+        </div>
+    </div>
+
+
+    <!--
+    <br/><br/><br/>
+    -->
+
+    <script>
+        $(document).ready(function()
+        {
+           /*$('#start').click(function(){
+               //webgazer.begin();
+           });*/
+
+            $('#start').click(function()
+            {
+                webgazer.setGazeListener(function(data, elapsedTime)
+                {
+                    if (data == null) {
+                        return;
+                    }
+                    var x_pred = data.x; //these x coordinates are relative to the viewport
+                    var y_pred = data.y; //these y coordinates are relative to the viewport
+
+                    $('#message').text(
+                        'x: ' + x_pred + ', y: ' + y_pred
+                    )
+
+                    aoiGazeCounter(x_pred, y_pred)
+
+                    //console.log(elapsedTime); //elapsed time is based on time since begin was called
+                }).begin();
+
+            });
+
+            $('#end').click(function(){
+                webgazer.end();
+            });
+        });
+
+
+        function aoiGazeCounter(x_loc, y_loc)
+        {
+            var elem = document.elementFromPoint(x_loc, y_loc);
+            if($(elem).hasClass('aoi'))
+            {
+                //find nearest input element of this AOI (img)
+                var inp = $(elem).parent().find('input[type=text]');
+
+                var present_val = parseInt(inp.val());
+                var new_val = parseInt(present_val + 1);
+
+                inp.val(new_val);
+            }
+
+        }
+
+    </script>
+
+</div>
+
+</body>
+</html>
